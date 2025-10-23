@@ -108,33 +108,34 @@
   <div id="footer">- By Nottackelgamer</div>
 
   <script>
-    async function fetchMember() {
-      const username = document.getElementById('discordUsername').value.trim();
-      if (!username) {
-        document.getElementById('result').textContent = '⚠️ Please enter a Discord Username.';
-        return;
-      }
-
-      const proxyURL = 'https://luminous-proxy.vercel.app/member?discordUsername=' + encodeURIComponent(username);
-
-      try {
-        const res = await fetch(proxyURL);
-        const data = await res.json();
-
-        if (data.found) {
-          const output = data.data.map(obj => {
-            const key = Object.keys(obj)[0];
-            return `<strong>${key}:</strong> ${obj[key]}`;
-          }).join('<br>');
-          document.getElementById('result').innerHTML = `✅ Member Found:<br><br>${output}`;
-        } else {
-          document.getElementById('result').textContent = '❌ No matching user found.';
-        }
-      } catch (err) {
-        console.error(err);
-        document.getElementById('result').textContent = '⚠️ Error fetching data.';
-      }
+  async function fetchMember() {
+    const username = document.getElementById('discordUsername').value.trim();
+    if (!username) {
+      document.getElementById('result').textContent = '⚠️ Please enter a Discord Username.';
+      return;
     }
-  </script>
+
+    const proxyURL = 'https://luminous-proxy.vercel.app/member?discordUsername=' + encodeURIComponent(username);
+
+    try {
+      const res = await fetch(proxyURL);
+      const data = await res.json();
+
+      if (data.found) {
+        const output = data.data.map(obj => {
+          const key = Object.keys(obj)[0];
+          return `<strong>${key}:</strong> ${obj[key]}`;
+        }).join('<br>');
+        document.getElementById('result').innerHTML = `✅ Member Found:<br><br>${output}`;
+      } else {
+        document.getElementById('result').textContent = '❌ No matching user found.';
+      }
+    } catch (err) {
+      console.error(err);
+      document.getElementById('result').textContent = '⚠️ Error fetching data.';
+    }
+  }
+</script>
+
 </body>
 </html>
