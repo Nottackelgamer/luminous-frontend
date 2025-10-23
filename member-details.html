@@ -116,6 +116,7 @@
     }
 
     const proxyURL = 'https://luminous-proxy.vercel.app/member?discordUsername=' + encodeURIComponent(username);
+    const sheet_link = 'https://docs.google.com/spreadsheets/d/1wLbq1RMEbU-pVOz-MVLN_JGRuJcPZotNK6Dtp4_Vlz8/edit?gid=0#gid=0'
 
     try {
       const res = await fetch(proxyURL);
@@ -126,7 +127,7 @@
           const key = Object.keys(obj)[0];
           return `<strong>${key}:</strong> ${obj[key]}`;
         }).join('<br>');
-        document.getElementById('result').innerHTML = `✅ Member Found:<br><br>${output}`;
+        document.getElementById('result').innerHTML = `✅ Member Found:<br><br>${output}<br><br><a href=${sheet_link}>Sheet link</a>`;
       } else {
         document.getElementById('result').textContent = '❌ No matching user found.';
       }
